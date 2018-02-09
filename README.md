@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/AlexCombat/rental-service.svg?branch=master)](https://travis-ci.org/AlexCombat/rental-service)
 # RentalService
 
 This is the course work on Data Management which consists of two major components:
