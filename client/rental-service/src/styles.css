@@ -1,1 +1,75 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:500);
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-y: hidden;
+  background: #fffadf;
+
+}
+
+ul {
+  list-style-type: none;
+  margin: .5em;
+  padding: 0;
+  overflow: hidden;
+  background-color: #FFBF40;
+  border-radius: 5px;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #714500;
+  text-align: center;
+  padding: 1em 1em;
+  text-decoration: none;
+  font-family: 'Ubuntu';
+}
+
+li a:hover {
+  background-color: #ffaa00;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+.right-menu-button {
+  float: right;
+}
+
+.main-content {
+  background: #ffdc81;
+  width: calc(100% - 1em);
+  margin: .5em;
+  height: calc(100% - 6.75em);
+  border-radius: 5px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  margin: .5em;
+  width: calc(100% - 1em);
+  height: 1.5em;
+  background-color: #FFBF40;
+  border-radius: 5px;
+}
+
+.footer-text {
+  text-align: center;
+  vertical-align: center;
+  line-height: 1.5em;
+  margin: .25em;
+  font-size: 12px;
+}
+
+.footer-text a {
+  font-family: 'Ubuntu';
+  text-decoration: none;
+  color: #714500;
+}
