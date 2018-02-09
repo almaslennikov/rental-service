@@ -3,8 +3,10 @@ language: node_js
 node_js:
    - node # will use latest node
 
-before_script: # commands to run before the build step
+before_install:
    - cd client/rental-service
+
+before_script: # commands to run before the build step
    - npm install -g --silent @angular/cli
 
 script: # the build step
