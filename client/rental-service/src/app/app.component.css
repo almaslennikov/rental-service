@@ -1,0 +1,33 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  overflow: hidden;
+  background-color: #1679df;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1em 1em;
+  text-decoration: none;
+  font-family: 'Ubuntu';
+}
+
+li a:hover {
+  background-color: #ff9b06;
+}
+
+.active {
+  background-color: #165ab4;
+}
+
+.right-menu-button {
+  float: right;
+}
