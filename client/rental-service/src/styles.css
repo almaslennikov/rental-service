@@ -4,7 +4,7 @@ html, body {
   height: 100%;
   margin: 0;
   overflow-y: hidden;
-  background: #fffadf;
+  background: white;
 
 }
 
@@ -43,8 +43,11 @@ li a:hover {
 }
 
 .main-content {
-  background: #ffdc81;
-  width: calc(100% - 1em);
+  background: #fffef2;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ffaa00;
+  width: calc(100% - 1.25em);
   margin: .5em;
   height: calc(100% - 6.75em);
   border-radius: 5px;
