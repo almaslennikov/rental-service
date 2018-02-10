@@ -1,0 +1,19 @@
+<div class="login-page">
+  <form [formGroup]="loginForm" (submit)="onSubmit()">
+    <ul class="element-list">
+      <li>
+        <label class="form-element" for="name">Name</label>
+        <input class="form-element" type="text" id="name" formControlName="name"/>
+      </li>
+      <div class="form-element error" *ngIf="isControlInvalid('name')">Incorrect username</div><br/>
+      <li>
+        <label class="form-element" for="password">Password</label>
+        <input class="form-element" type="password" id="password" formControlName="password"/>
+      </li>
+      <div class="form-element error" *ngIf="isControlInvalid('password')">Incorrect password</div><br/>
+      <li>
+        <button class="form-element" type="submit">Submit</button>
+      </li>
+    </ul>
+  </form>
+</div>

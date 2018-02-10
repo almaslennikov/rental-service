@@ -31,3 +31,7 @@ li a:hover {
 .right-menu-button {
   float: right;
 }
+
+router-outlet {
+  position: relative;
+}
