@@ -1,1 +1,9 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<ul>
+  <li *ngIf="this.authService.isAuthorised"><a href="info">Personal info</a></li>
+  <li *ngIf="this.authService.isAuthorised"><a href="rent">In rent</a></li>
+  <li *ngIf="true && this.authService.isAuthorised"><a href="reservation">In reservation</a></li>
+  <li *ngIf="this.authService.isAuthorised"><a href="history">Requests history</a></li>
+  <li *ngIf="!this.authService.isAuthorised" class="right-menu-button active"><a href="login">Login</a></li>
+  <li *ngIf="this.authService.isAuthorised" class="right-menu-button active"><a href="logout">Logout</a></li>
+</ul>
+<router-outlet></router-outlet>

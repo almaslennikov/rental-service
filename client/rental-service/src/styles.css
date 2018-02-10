@@ -4,48 +4,13 @@ html, body {
   height: 100%;
   margin: 0;
   overflow-y: hidden;
-  background: #fffadf;
+  background: white;
 
-}
-
-ul {
-  list-style-type: none;
-  margin: .5em;
-  padding: 0;
-  overflow: hidden;
-  background-color: #FFBF40;
-  border-radius: 5px;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: #714500;
-  text-align: center;
-  padding: 1em 1em;
-  text-decoration: none;
-  font-family: 'Ubuntu';
-}
-
-li a:hover {
-  background-color: #ffaa00;
-}
-
-.active {
-  background-color: #4CAF50;
-}
-
-.right-menu-button {
-  float: right;
 }
 
 .main-content {
-  background: #ffdc81;
-  width: calc(100% - 1em);
-  margin: .5em;
+  width: 100%;
+  margin: 0;
   height: calc(100% - 6.75em);
   border-radius: 5px;
 }
@@ -53,11 +18,9 @@ li a:hover {
 footer {
   position: fixed;
   bottom: 0;
-  margin: .5em;
-  width: calc(100% - 1em);
+  width: 100%;
   height: 1.5em;
-  background-color: #FFBF40;
-  border-radius: 5px;
+  background-color: #1679df;
 }
 
 .footer-text {
@@ -71,5 +34,5 @@ footer {
 .footer-text a {
   font-family: 'Ubuntu';
   text-decoration: none;
-  color: #714500;
+  color: white;
 }
