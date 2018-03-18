@@ -1,7 +1,6 @@
 package com.nntu.models;
 
 import com.nntu.containers.info.UserRole;
-import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;

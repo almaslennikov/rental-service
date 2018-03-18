@@ -41,3 +41,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Intellij IDEA files
+*.iml
+/rest/target
+/rest/.idea
