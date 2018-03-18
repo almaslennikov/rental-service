@@ -7,6 +7,10 @@ This is the course work on Data Management which consists of two major component
 
 Web application that provides you user-friendly interface for reading and editing data stored in database
 
+### Running
+`npm install &&
+ng serve`
+
 ## Spring REST
 
 Restful service that provides data to clients

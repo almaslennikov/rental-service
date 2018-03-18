@@ -1,13 +1,14 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
-import {AppRoutingModule} from './/app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 import {PersonInfoComponent} from './person-info/person-info.component';
 import {LoginComponent} from './login/login.component';
 import {AuthService} from './auth.service';
-import { LogoutComponent } from './logout/logout.component';
+import {LogoutComponent} from './logout/logout.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -15,15 +16,15 @@ import { LogoutComponent } from './logout/logout.component';
     AppComponent,
     PersonInfoComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
