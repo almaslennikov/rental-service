@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @RestController
 public class UserController {
     private UserDAO userDAO;
@@ -22,28 +25,69 @@ public class UserController {
                                    @RequestParam(value = "email") String email,
                                    @RequestParam(value = "password") String password,
                                    @RequestParam(value = "role") UserRole role) {
-        User newUser = new User(name, lastName, email, password, role);
-        userDAO.save(newUser);
+        if (authorizeUser(email, password).getStatus().equals(RequestStatus.SUCCESS)) {
+            return new UserResponse(RequestStatus.FAILURE);
+        }
 
-        return new UserResponse(RequestStatus.SUCCESS,
-                new UserInfo(newUser.getId(),
-                        newUser.getName(),
-                        newUser.getLastName(),
-                        newUser.getEmail(),
-                        newUser.getRole()));
+        User newUser = new User(name,
+                lastName,
+                email,
+                UUID.nameUUIDFromBytes(password.getBytes()).toString(),
+                role);
+        UserResponse response = new UserResponse(RequestStatus.SUCCESS);
+        try {
+            userDAO.save(newUser);
+            response.setUserInfo(new UserInfo(newUser.getId(),
+                    newUser.getName(),
+                    newUser.getLastName(),
+                    newUser.getEmail(),
+                    newUser.getRole()));
+        } catch (Exception se) {
+            response = new UserResponse(RequestStatus.FAILURE);
+        }
+
+        return response;
     }
 
     @RequestMapping("/authorizeUser")
     public AuthorizationResponse authorizeUser(@RequestParam(value = "email") String email,
                                                @RequestParam(value = "password") String password) {
-        Long userId = 1L;
-        return new AuthorizationResponse(RequestStatus.SUCCESS, userId);
+        Optional<User> result = Optional.ofNullable(userDAO.getUserByEmail(email));
+        AuthorizationResponse response = new AuthorizationResponse(RequestStatus.SUCCESS);
+        result.ifPresentOrElse(x -> {
+                    if (UUID.fromString(x.getPasswordHash())
+                            .equals(UUID.nameUUIDFromBytes(password.getBytes()))) {
+                        response.setStatus(RequestStatus.FAILURE);
+                    } else {
+                        response.setUserInfo(UserInfo.builder()
+                                .id(x.getId())
+                                .name(x.getName())
+                                .lastName(x.getLastName())
+                                .email(x.getEmail())
+                                .role(x.getRole())
+                                .build()
+                        );
+                    }
+                },
+                () -> response.setStatus(RequestStatus.FAILURE));
+
+        return response;
     }
 
     @RequestMapping("/getUserById")
     public UserResponse getUserById(@RequestParam(value = "id") Long userId) {
-        return new UserResponse(RequestStatus.SUCCESS,
-                new UserInfo(1L, "Mark", "Lemeshevskij", "gigelbig@gmail.com", UserRole.LANDLORD));
+        Optional<User> result = userDAO.findById(userId);
+        UserResponse response = new UserResponse(RequestStatus.SUCCESS);
+        result.ifPresentOrElse(x -> response.setUserInfo(UserInfo.builder()
+                        .id(x.getId())
+                        .name(x.getName())
+                        .lastName(x.getLastName())
+                        .email(x.getEmail())
+                        .role(x.getRole())
+                        .build()),
+                () -> response.setStatus(RequestStatus.FAILURE));
+
+        return response;
     }
 
     @Autowired

@@ -11,23 +11,32 @@ import javax.validation.constraints.NotNull;
 @Data
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
+    @Column(name = "name")
     private String name;
 
     @NotNull
+    @Column(name = "last_name")
     private String lastName;
 
     @NotNull
+    @Column(name = "email")
     private String email;
 
     @NotNull
+    @Column(name = "password_hash")
     private String passwordHash;
 
     @NotNull
+    @Column(name = "role")
     private UserRole role;
+
+    public User() {
+        // empty constructor
+    }
 
     public User(@NotNull String name, @NotNull String lastName, @NotNull String email, @NotNull String passwordHash, @NotNull UserRole role) {
         this.name = name;
