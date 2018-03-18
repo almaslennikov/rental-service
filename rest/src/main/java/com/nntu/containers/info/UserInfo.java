@@ -1,7 +1,9 @@
 package com.nntu.containers.info;
 
+import lombok.Builder;
 import lombok.Data;
 
+@Builder
 @Data
 public class UserInfo {
     private Long id;
