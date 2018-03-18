@@ -1,19 +1,44 @@
 <div class="login-page">
-  <form [formGroup]="loginForm" (submit)="onSubmit()">
-    <ul class="element-list">
-      <li>
-        <label class="form-element" for="name">Name</label>
-        <input class="form-element" type="text" id="name" formControlName="name"/>
-      </li>
-      <div class="form-element error" *ngIf="isControlInvalid('name')">Incorrect username</div><br/>
-      <li>
-        <label class="form-element" for="password">Password</label>
-        <input class="form-element" type="password" id="password" formControlName="password"/>
-      </li>
-      <div class="form-element error" *ngIf="isControlInvalid('password')">Incorrect password</div><br/>
-      <li>
-        <button class="form-element" type="submit">Submit</button>
-      </li>
-    </ul>
+  <form class="ui form">
+    <div class="field">
+      <label>Username</label>
+      <input type="text"
+             name="username"
+             required
+             minlength="6"
+             maxlength="16"
+             pattern="^[a-zA-Z0-9]{6,16}$"
+             [(ngModel)]="user.username"
+             #name="ngModel"
+             placeholder="Username">
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password"
+             name="password"
+             required
+             minlength="6"
+             maxlength="16"
+             pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$"
+             [(ngModel)]="user.password"
+             #password="ngModel"
+             placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+    </div>
+    <button class="ui button" type="submit"
+            [disabled]="password.invalid || name.invalid"
+            (click)="onSubmit()">
+      Login
+    </button>
+    <div
+      *ngIf="(password.invalid && (password.dirty || password.touched)) || (name.invalid && (name.dirty || name.touched))"
+      class="ui negative message">
+      <div class="header">Credentials are incorrect</div>
+      <p *ngIf="name.errors?.required">Username is required</p>
+      <p *ngIf="name.errors?.minlength || name.errors?.maxlength">Username must contain 6 to 16 characters</p>
+      <p *ngIf="name.errors?.invalid">Username must contain only letters and digits</p>
+      <p *ngIf="password.errors?.required">Password is required</p>
+      <p *ngIf="password.errors?.minlength || password.errors?.maxlength">Password must contain 6 to 16 characters</p>
+      <p *ngIf="password.errors?.invalid">Password must contain at least 1 letter and 1 digit</p>
+    </div>
   </form>
 </div>
