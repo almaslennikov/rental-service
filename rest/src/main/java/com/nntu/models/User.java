@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -33,6 +34,9 @@ public class User {
     @NotNull
     @Column(name = "role")
     private UserRole role;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+    private List<Order> orders;
 
     public User() {
         // empty constructor
