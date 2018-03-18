@@ -14,3 +14,6 @@ ng serve`
 ## Spring REST
 
 Restful service that provides data to clients
+
+### Running
+`mvn compile package install && java --add-modules java.xml.bind -jar target/rest-db-1.0-SNAPSHOT.jar`
