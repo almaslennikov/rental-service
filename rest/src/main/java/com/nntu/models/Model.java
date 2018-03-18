@@ -25,4 +25,9 @@ public class Model {
     public Model() {
         // empty constructor
     }
+
+    public Model(@NotNull String modelName, @NotNull Integer modelVersion) {
+        this.modelName = modelName;
+        this.modelVersion = modelVersion;
+    }
 }

@@ -21,4 +21,19 @@ public class Vehicle {
     @NotNull
     @Column(name = "is_busy")
     private Boolean isBusy;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "landlord_id")
+    private User landlord;
+
+    public Vehicle() {
+        // empty constructor
+    }
+
+    public Vehicle(@NotNull Model model, @NotNull Boolean isBusy, @NotNull User landlord) {
+        this.model = model;
+        this.isBusy = isBusy;
+        this.landlord = landlord;
+    }
 }
