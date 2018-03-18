@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from "../auth.service";
 import {UserLoginInfo} from "./user-login-info";
@@ -8,19 +8,25 @@ import {UserLoginInfo} from "./user-login-info";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
-  @Output() user = new UserLoginInfo();
+  user = new UserLoginInfo();
 
   constructor(
     private route: Router,
     private authService: AuthService) {
   }
 
+  ngOnInit() {
+    this.authService.logout();
+  }
+
   onSubmit() {
-    if (!this.authService.isAuthorised) {
-      this.authService.handleAuth(this.user.username, this.user.password).subscribe(isAuthorized => {
-        if(isAuthorized) {
+    console.log(this.authService.isAuthorized());
+    if (!this.authService.isAuthorized()) {
+      this.authService.handleAuth(this.user.email, this.user.password).subscribe(isAuthorized => {
+        console.log(isAuthorized);
+        if (isAuthorized) {
           this.route.navigate(['']);
         }
       });

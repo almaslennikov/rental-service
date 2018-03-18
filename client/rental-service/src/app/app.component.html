@@ -1,22 +1,22 @@
 <div class="ui inverted menu">
   <div class="header item">
-    Rental Service
+    <i class="shopping basket icon large"></i> Rental Service
   </div>
-  <a class="item" *ngIf="!this.authService.isAuthorised" href="info">
+  <a class="item" *ngIf="this.authService.isAuthorized" href="info">
     Personal Info
   </a>
-  <a class="item" *ngIf="this.authService.isAuthorised" href="rent">
+  <a class="item" *ngIf="this.authService.isAuthorized" href="rent">
     In rent
   </a>
-  <a class="item" *ngIf="this.authService.isAuthorised" href="history">
+  <a class="item" *ngIf="this.authService.isAuthorized" href="history">
     Requests history
   </a>
   <div class="right menu">
-    <a class="item" *ngIf="!this.authService.isAuthorised" href="login">
-      Login
+    <a class="item" *ngIf="!this.authService.isAuthorized" href="login">
+      <i class="sign in alternate icon"></i> Login
     </a>
-    <a class="item" *ngIf="this.authService.isAuthorised" href="logout">
-      Logout
+    <a class="item" *ngIf="this.authService.isAuthorized" href="logout">
+      <i class="sign out alternate icon"></i> Logout
     </a>
   </div>
 </div>
