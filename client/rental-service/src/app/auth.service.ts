@@ -1,39 +1,31 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Rx";
-import {HttpClient} from "@angular/common/http";
-
-class CreateUserResponse {
-  public token: string;
-}
+import {ApiService} from "./api.service";
+import {map} from "rxjs/operators";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class AuthService {
 
-  get isAuthorised(): boolean {
-    return AuthService.checkIfAuthorized();
+  constructor(private api: ApiService, private user: UserService) {
   }
 
-  constructor(private http: HttpClient) {
+  handleAuth(email: string, password: string): Observable<boolean> {
+    return this.api.login(email, password).pipe(map((response: any) => {
+      if (response.status == 'SUCCESS') {
+        let userInfo = response.userInfo;
+        localStorage.setItem('authToken', userInfo.id);
+        this.user.setUserFromParameters(userInfo.id, userInfo.name, userInfo.lastName, userInfo.email, userInfo.role);
+      }
+      return response['status'] == 'SUCCESS';
+    }));
   }
 
-  handleAuth(name: string, password: string): Observable<boolean> {
-    //TODO Add correct handle of auth
-    localStorage.setItem('authToken', 'asdasdasda');
-    console.log('1');
-    return Observable.create(observer => {
-      console.log('1');
-      observer.next(AuthService.checkIfAuthorized());
-    });
-  }
-
-  static checkIfAuthorized(): boolean {
+  isAuthorized(): boolean {
     return localStorage.getItem('authToken') != '';
   }
 
-  logout(): Observable<boolean> {
+  logout() {
     localStorage.setItem('authToken', '');
-    return Observable.create(observer => {
-      observer.next(AuthService.checkIfAuthorized());
-    });
   }
 }

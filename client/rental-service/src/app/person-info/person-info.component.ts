@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
+import {UserInfo} from "../user-info";
+import {UserService} from "../user.service";
+
 
 @Component({
   selector: 'app-person-info',
@@ -8,14 +11,10 @@ import {AuthService} from '../auth.service';
 })
 export class PersonInfoComponent implements OnInit {
 
-  public status: string;
+  user: UserInfo;
 
-  constructor(private authService: AuthService) {
-    if(this.authService.isAuthorised) {
-      this.status = "Authorized!";
-    } else {
-      this.status = "Not authorized!";
-    }
+  constructor(private authService: AuthService, private userService: UserService) {
+    this.user = this.userService.getUser();
   }
 
   ngOnInit() {
