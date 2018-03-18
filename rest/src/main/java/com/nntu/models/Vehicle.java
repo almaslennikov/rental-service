@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "vehicles")
@@ -14,8 +15,7 @@ public class Vehicle {
     private Long id;
 
     @NotNull
-    @Column(name = "model_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Model model;
 
     @NotNull
@@ -24,8 +24,10 @@ public class Vehicle {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "landlord_id")
     private User landlord;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "vehicle")
+    private List<Order> orders;
 
     public Vehicle() {
         // empty constructor

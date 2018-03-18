@@ -15,16 +15,14 @@ public class Order {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "customer_id")
     private User customer;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "landlord_id")
     private User landlord;
 
     @NotNull
-    @Column(name = "vehicle_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Vehicle vehicle;
 
     public Order() {

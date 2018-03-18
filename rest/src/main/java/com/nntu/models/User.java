@@ -35,7 +35,7 @@ public class User {
     @Column(name = "role")
     private UserRole role;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private List<Order> orders;
 
     public User() {

@@ -10,14 +10,17 @@ import java.util.List;
 @Table(name = "models")
 @Data
 public class Model {
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "models")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "model")
     List<Vehicle> vehicles;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     @Column(name = "model_name")
     private String modelName;
+
     @NotNull
     @Column(name = "model_version")
     private Integer modelVersion;
