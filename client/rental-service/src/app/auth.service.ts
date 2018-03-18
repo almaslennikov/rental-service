@@ -1,5 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs/Rx";
+import {HttpClient} from "@angular/common/http";
+
+class CreateUserResponse {
+  public token: string;
+}
 
 @Injectable()
 export class AuthService {
@@ -8,11 +13,11 @@ export class AuthService {
     return AuthService.checkIfAuthorized();
   }
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+  }
 
   handleAuth(name: string, password: string): Observable<boolean> {
     //TODO Add correct handle of auth
-    console.log('1');
     localStorage.setItem('authToken', 'asdasdasda');
     console.log('1');
     return Observable.create(observer => {

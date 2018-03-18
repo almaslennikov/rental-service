@@ -1,9 +1,23 @@
-<ul>
-  <li *ngIf="this.authService.isAuthorised"><a href="info">Personal info</a></li>
-  <li *ngIf="this.authService.isAuthorised"><a href="rent">In rent</a></li>
-  <li *ngIf="true && this.authService.isAuthorised"><a href="reservation">In reservation</a></li>
-  <li *ngIf="this.authService.isAuthorised"><a href="history">Requests history</a></li>
-  <li *ngIf="!this.authService.isAuthorised" class="right-menu-button active"><a href="login">Login</a></li>
-  <li *ngIf="this.authService.isAuthorised" class="right-menu-button active"><a href="logout">Logout</a></li>
-</ul>
+<div class="ui inverted menu">
+  <div class="header item">
+    Rental Service
+  </div>
+  <a class="item" *ngIf="!this.authService.isAuthorised" href="info">
+    Personal Info
+  </a>
+  <a class="item" *ngIf="this.authService.isAuthorised" href="rent">
+    In rent
+  </a>
+  <a class="item" *ngIf="this.authService.isAuthorised" href="history">
+    Requests history
+  </a>
+  <div class="right menu">
+    <a class="item" *ngIf="!this.authService.isAuthorised" href="login">
+      Login
+    </a>
+    <a class="item" *ngIf="this.authService.isAuthorised" href="logout">
+      Logout
+    </a>
+  </div>
+</div>
 <router-outlet></router-outlet>

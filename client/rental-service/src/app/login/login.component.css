@@ -12,49 +12,9 @@ form {
   margin-top: 15em;
   max-width: 75%;
   height: 100%;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-ul, li {
-  width: 100%;
-}
-
-form, ul, li {
   display: flex;
   flex-direction: column;
   vertical-align: middle;
-}
-
-input {
-  border-color: #1679df;
-  border-style: solid;
-  border-width: 1px;
-  font-size: 15px;
-  font-family: inherit;
-  font-weight: 100;
-  padding: 1%;
-}
-
-input.ng-touched.ng-invalid {
-  border-color: red;
-}
-
-.form-element {
-  margin: .25em;
-}
-
-.error {
-  background: #ffa600;
-  text-align: center;
-  font-family: inherit;
-  color: white;
-  height: 100%;
-  padding-left: .5%;
-  padding-right: .5%;
 }
 
 label {
@@ -63,21 +23,6 @@ label {
   color: #1679df;
 }
 
-button {
-  background: #1679df;
-  font-family: inherit;
-  font-size: 15px;
-  color: white;
-  border-style: hidden;
-  padding: .5em;
-  width: calc(100% - .5em);
+.ui {
+  min-width: 20em;
 }
-
-button:hover {
-  background: #165ab4;
-}
-
-button:active {
-  background: #ff9b06;
-}
-
