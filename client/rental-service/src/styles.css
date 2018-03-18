@@ -16,23 +16,12 @@ html, body {
 }
 
 footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
-  height: 1.5em;
-  background-color: #1679df;
+  height: auto;
 }
 
-.footer-text {
-  text-align: center;
-  vertical-align: center;
-  line-height: 1.5em;
-  margin: .25em;
-  font-size: 12px;
-}
-
-.footer-text a {
-  font-family: 'Ubuntu';
-  text-decoration: none;
+footer .a {
   color: white;
 }
