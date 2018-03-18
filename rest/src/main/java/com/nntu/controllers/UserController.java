@@ -57,8 +57,6 @@ public class UserController {
         result.ifPresentOrElse(x -> {
                     if (UUID.fromString(x.getPasswordHash())
                             .equals(UUID.nameUUIDFromBytes(password.getBytes()))) {
-                        response.setStatus(RequestStatus.FAILURE);
-                    } else {
                         response.setUserInfo(UserInfo.builder()
                                 .id(x.getId())
                                 .name(x.getName())
@@ -67,6 +65,8 @@ public class UserController {
                                 .role(x.getRole())
                                 .build()
                         );
+                    } else {
+                        response.setStatus(RequestStatus.FAILURE);
                     }
                 },
                 () -> response.setStatus(RequestStatus.FAILURE));
