@@ -8,6 +8,7 @@ import com.nntu.containers.responses.UserResponse;
 import com.nntu.dao.UserDAO;
 import com.nntu.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ import java.util.UUID;
 public class UserController {
     private UserDAO userDAO;
 
+    @CrossOrigin
     @RequestMapping("/addNewUser")
     public UserResponse addNewUser(@RequestParam(value = "name") String name,
                                    @RequestParam(value = "lastName") String lastName,
@@ -49,6 +51,7 @@ public class UserController {
         return response;
     }
 
+    @CrossOrigin
     @RequestMapping("/authorizeUser")
     public AuthorizationResponse authorizeUser(@RequestParam(value = "email") String email,
                                                @RequestParam(value = "password") String password) {
@@ -57,8 +60,6 @@ public class UserController {
         result.ifPresentOrElse(x -> {
                     if (UUID.fromString(x.getPasswordHash())
                             .equals(UUID.nameUUIDFromBytes(password.getBytes()))) {
-                        response.setStatus(RequestStatus.FAILURE);
-                    } else {
                         response.setUserInfo(UserInfo.builder()
                                 .id(x.getId())
                                 .name(x.getName())
@@ -67,6 +68,8 @@ public class UserController {
                                 .role(x.getRole())
                                 .build()
                         );
+                    } else {
+                        response.setStatus(RequestStatus.FAILURE);
                     }
                 },
                 () -> response.setStatus(RequestStatus.FAILURE));
@@ -74,6 +77,7 @@ public class UserController {
         return response;
     }
 
+    @CrossOrigin
     @RequestMapping("/getUserById")
     public UserResponse getUserById(@RequestParam(value = "id") Long userId) {
         Optional<User> result = userDAO.findById(userId);
