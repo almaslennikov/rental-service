@@ -1,4 +1,4 @@
 export class UserLoginInfo {
-  public username: string = '';
+  public email: string = '';
   public password: string = '';
 }

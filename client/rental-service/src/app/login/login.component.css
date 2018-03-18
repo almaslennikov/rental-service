@@ -10,7 +10,7 @@
 
 form {
   margin-top: 15em;
-  max-width: 75%;
+  width: 20em;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -21,8 +21,4 @@ label {
   text-align: center;
   font-family: inherit;
   color: #1679df;
-}
-
-.ui {
-  min-width: 20em;
 }

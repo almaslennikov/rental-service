@@ -9,6 +9,8 @@ import {LoginComponent} from './login/login.component';
 import {AuthService} from './auth.service';
 import {LogoutComponent} from './logout/logout.component';
 import {HttpClientModule} from "@angular/common/http";
+import {ApiService} from "./api.service";
+import {UserService} from "./user.service";
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, ApiService, UserService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
