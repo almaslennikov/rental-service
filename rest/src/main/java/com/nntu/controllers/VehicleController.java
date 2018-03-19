@@ -43,7 +43,7 @@ public class VehicleController {
     @CrossOrigin
     @RequestMapping("/addNewVehicle")
     public Response addNewVehicle(@RequestParam(value = "ownerId") Long ownerId,
-                                  @RequestParam(value = "id") Long modelId) {
+                                  @RequestParam(value = "modelId") Long modelId) {
         Optional<Model> model = modelDAO.findById(modelId);
         Optional<User> user = userDAO.findById(ownerId);
 
@@ -66,7 +66,7 @@ public class VehicleController {
     @RequestMapping("/getAvailableVehicles")
     public VehicleListResponse getAvailableVehicles() {
         return new VehicleListResponse(RequestStatus.SUCCESS,
-                vehicleDAO.findAllByIsBusy(Boolean.TRUE)
+                vehicleDAO.findAllByIsBusy(Boolean.FALSE)
                         .stream()
                         .map(VehicleInfo::new)
                         .collect(Collectors.toList()));
