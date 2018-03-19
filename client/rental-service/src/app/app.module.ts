@@ -11,6 +11,7 @@ import {LogoutComponent} from './logout/logout.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ApiService} from "./api.service";
 import {UserService} from "./user.service";
+import {AvatarService} from "./avatar.service";
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import {UserService} from "./user.service";
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, ApiService, UserService],
+  providers: [AuthService, ApiService, UserService, AvatarService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

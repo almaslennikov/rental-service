@@ -3,6 +3,7 @@ import {Observable} from "rxjs/Rx";
 import {ApiService} from "./api.service";
 import {map} from "rxjs/operators";
 import {UserService} from "./user.service";
+import {UserInfo} from "./user-info";
 
 @Injectable()
 export class AuthService {
@@ -17,6 +18,12 @@ export class AuthService {
         localStorage.setItem('authToken', userInfo.id);
         this.user.setUserFromParameters(userInfo.id, userInfo.name, userInfo.lastName, userInfo.email, userInfo.role);
       }
+      return response['status'] == 'SUCCESS';
+    }));
+  }
+
+  handleRegister(user: UserInfo, password: string): Observable<boolean> {
+    return this.api.register(user, password).pipe(map((response: any) => {
       return response['status'] == 'SUCCESS';
     }));
   }

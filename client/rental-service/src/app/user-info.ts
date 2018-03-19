@@ -1,16 +1,18 @@
-export class UserInfo {
-  email: string = '';
-  id: number = 0;
-  name: string = '';
-  lastName: string = '';
-  role: string = '';
+import {UserRole} from "./user-role";
 
-  public set(id: number, name: string, lastName: string, email: string, role: string) {
+export class UserInfo {
+  email: string;
+  id: number;
+  name: string;
+  lastName: string;
+  role = UserRole.customer;
+
+  public set(id: number, name: string, lastName: string, email: string, role: UserRole) {
     this.id = id;
     this.name = name;
     this.lastName = lastName;
     this.email = email;
     this.role = role;
-}
+  }
 
 }
