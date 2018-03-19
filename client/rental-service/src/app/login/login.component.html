@@ -1,41 +1,60 @@
 <div class="login-page">
-  <form class="ui form">
-    <div class="field">
-      <label>E-mail</label>
-      <input type="email"
-             name="email"
-             required
-             pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
-             [(ngModel)]="user.email"
-             #email="ngModel"
-             placeholder="username@example.com">
+  <div class="horizontal-box">
+    <div class="ui form">
+      <div class="ui stacked segment">
+        <div *ngIf="mode == AuthMode.register" class="field">
+          <label>Name</label>
+          <input type="text"
+                 name="name"
+                 [(ngModel)]="user.name"
+                 placeholder="Username">
+        </div>
+        <div *ngIf="mode == AuthMode.register" class="field">
+          <label>Last name</label>
+          <input type="text"
+                 [(ngModel)]="user.lastName"
+                 placeholder="Last name">
+        </div>
+        <div class="field">
+          <label>E-mail</label>
+          <input type="email"
+                 [(ngModel)]="user.email"
+                 placeholder="username@example.com">
+        </div>
+        <div *ngIf="mode == AuthMode.register" class="field">
+          <label>UserRole</label>
+          <select class="ui dropdown" [(ngModel)]="user.role">
+            <option value="">Select role</option>
+            <option value="landlord">Landlord</option>
+            <option value="customer">Customer</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input type="password"
+                 name="password"
+                 pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$"
+                 [(ngModel)]="userPassword"
+                 placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+        </div>
+
+        <div *ngIf="mode == AuthMode.register" class="field">
+          <label>Confirm password</label>
+          <input type="password"
+                 pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$"
+                 [(ngModel)]="userConfirmedPassword"
+                 placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+        </div>
+
+        <button class="ui primary positive button" type="submit" (click)="onSubmit()">
+          {{mode | titlecase}}
+        </button>
+      </div>
     </div>
-    <div class="field">
-      <label>Password</label>
-      <input type="password"
-             name="password"
-             required
-             minlength="6"
-             maxlength="16"
-             pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$"
-             [(ngModel)]="user.password"
-             #password="ngModel"
-             placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
-    </div>
-    <button class="ui primary inverted button" type="submit"
-            [disabled]="password.invalid || email.invalid"
-            (click)="onSubmit()">
-      Login
-    </button>
-    <div
-      *ngIf="(password.invalid && (password.dirty || password.touched)) || (email.invalid && (email.dirty || email.touched))"
-      class="ui negative message">
+    <div *ngIf="errorMessages.length" class="ui error message">
       <div class="header">Credentials are incorrect</div>
-      <p *ngIf="email.errors?.required">E-mail is required</p>
-      <p *ngIf="email.invalid">Incorrect e-mail address</p>
-      <p *ngIf="password.errors?.required">Password is required</p>
-      <p *ngIf="password.errors?.minlength || password.errors?.maxlength">Password must contain 6 to 16 characters</p>
-      <p *ngIf="password.invalid">Password must contain at least 1 letter and 1 digit</p>
+      <p *ngFor="let message of errorMessages">{{message}}</p>
     </div>
-  </form>
+  </div>
 </div>
