@@ -75,6 +75,27 @@ public class OrderController {
         return response;
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/order", method = RequestMethod.DELETE)
+    public Response cancelExistingOrder(@RequestParam(value = "id") Long id) {
+        Response response = new Response(RequestStatus.SUCCESS);
+        orderDAO.findById(id)
+                .ifPresentOrElse(order -> {
+                            try {
+                                Vehicle vehicle = order.getVehicle();
+                                vehicle.setIsBusy(Boolean.FALSE);
+                                vehicleDAO.save(vehicle);
+                                orderDAO.delete(order);
+                            } catch (Exception se) {
+                                response.setStatus(RequestStatus.FAILURE);
+                            }
+                        },
+                        () -> {
+                            response.setStatus(RequestStatus.FAILURE);
+                        });
+        return response;
+    }
+
     @Autowired
     public void setOrderDAO(OrderDAO orderDAO) {
         this.orderDAO = orderDAO;
