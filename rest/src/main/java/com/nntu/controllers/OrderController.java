@@ -11,22 +11,20 @@ import com.nntu.models.Order;
 import com.nntu.models.User;
 import com.nntu.models.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/orders")
 public class OrderController {
     private OrderDAO orderDAO;
     private UserDAO userDAO;
     private VehicleDAO vehicleDAO;
 
     @CrossOrigin
-    @RequestMapping("/orderVehicle")
+    @RequestMapping(value = "/order-vehicle", method = RequestMethod.POST)
     public Response orderVehicle(@RequestParam(value = "customerId") Long customerId,
                                  @RequestParam(value = "vehicleOwnerId") Long vehicleOwnerId,
                                  @RequestParam(value = "vehicleId") Long vehicleId) {
@@ -52,7 +50,7 @@ public class OrderController {
     }
 
     @CrossOrigin
-    @RequestMapping("/getOrdersByCustomerId")
+    @RequestMapping(value = "/orders-by-customer-id", method = RequestMethod.GET)
     public OrdersResponse getOrdersByCustomerId(@RequestParam(value = "id") Long id) {
         final OrdersResponse response = new OrdersResponse(RequestStatus.SUCCESS);
         userDAO.findById(id)
@@ -65,7 +63,7 @@ public class OrderController {
     }
 
     @CrossOrigin
-    @RequestMapping("/getOrdersByLandlordId")
+    @RequestMapping(value = "/orders-by-landlord-id", method = RequestMethod.GET)
     public OrdersResponse getOrdersByLandlordId(@RequestParam(value = "id") Long id) {
         final OrdersResponse response = new OrdersResponse(RequestStatus.SUCCESS);
         userDAO.findById(id)

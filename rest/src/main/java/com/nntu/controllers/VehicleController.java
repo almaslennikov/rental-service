@@ -13,23 +13,21 @@ import com.nntu.models.Model;
 import com.nntu.models.User;
 import com.nntu.models.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
+@RequestMapping("/vehicles")
 public class VehicleController {
     private VehicleDAO vehicleDAO;
     private ModelDAO modelDAO;
     private UserDAO userDAO;
 
     @CrossOrigin
-    @RequestMapping("/addVehicleModel")
+    @RequestMapping(value = "/new-vehicle-model", method = RequestMethod.POST)
     public Response addVehicleModel(@RequestParam(value = "brand") String brand,
                                     @RequestParam(value = "model") String modelName) {
         Model newModel = new Model(brand, modelName);
@@ -44,7 +42,7 @@ public class VehicleController {
     }
 
     @CrossOrigin
-    @RequestMapping("/addNewVehicle")
+    @RequestMapping(value = "/new-vehicle", method = RequestMethod.POST)
     public Response addNewVehicle(@RequestParam(value = "ownerId") Long ownerId,
                                   @RequestParam(value = "modelId") Long modelId) {
         Optional<Model> model = modelDAO.findById(modelId);
@@ -66,7 +64,7 @@ public class VehicleController {
     }
 
     @CrossOrigin
-    @RequestMapping("/getAvailableVehicles")
+    @RequestMapping(value = "/available-vehicles", method = RequestMethod.GET)
     public VehicleListResponse getAvailableVehicles() {
         return new VehicleListResponse(RequestStatus.SUCCESS,
                 vehicleDAO.findAllByIsBusy(Boolean.FALSE)
@@ -76,7 +74,7 @@ public class VehicleController {
     }
 
     @CrossOrigin
-    @RequestMapping("/getVehicleById")
+    @RequestMapping("/vehicle-by-id")
     public VehicleListResponse getVehicleById(@RequestParam(value = "id") Long id) {
         return new VehicleListResponse(RequestStatus.SUCCESS,
                 vehicleDAO.findAllById(id)
@@ -86,7 +84,7 @@ public class VehicleController {
     }
 
     @CrossOrigin
-    @RequestMapping("/getAvailableModels")
+    @RequestMapping(value = "/available-models", method = RequestMethod.GET)
     public ModelListResponse getAvailableModels() {
         return new ModelListResponse(RequestStatus.SUCCESS,
                 StreamSupport.stream(modelDAO.findAll().spliterator(), false)

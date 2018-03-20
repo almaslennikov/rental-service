@@ -8,20 +8,18 @@ import com.nntu.containers.responses.UserResponse;
 import com.nntu.dao.UserDAO;
 import com.nntu.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/users")
 public class UserController {
     private UserDAO userDAO;
 
     @CrossOrigin
-    @RequestMapping("/addNewUser")
+    @RequestMapping(value = "/new-user", method = RequestMethod.POST)
     public UserResponse addNewUser(@RequestParam(value = "name") String name,
                                    @RequestParam(value = "lastName") String lastName,
                                    @RequestParam(value = "email") String email,
@@ -52,7 +50,7 @@ public class UserController {
     }
 
     @CrossOrigin
-    @RequestMapping("/authorizeUser")
+    @RequestMapping(value = "/authorize-user", method = RequestMethod.GET)
     public AuthorizationResponse authorizeUser(@RequestParam(value = "email") String email,
                                                @RequestParam(value = "password") String password) {
         Optional<User> result = Optional.ofNullable(userDAO.getUserByEmail(email));
@@ -78,7 +76,7 @@ public class UserController {
     }
 
     @CrossOrigin
-    @RequestMapping("/getUserById")
+    @RequestMapping(value = "/user-by-id", method = RequestMethod.GET)
     public UserResponse getUserById(@RequestParam(value = "id") Long userId) {
         Optional<User> result = userDAO.findById(userId);
         UserResponse response = new UserResponse(RequestStatus.SUCCESS);
