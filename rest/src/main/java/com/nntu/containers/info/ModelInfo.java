@@ -8,18 +8,18 @@ import lombok.Data;
 @Data
 public class ModelInfo {
     private Long id;
-    private String modelName;
-    private Integer modelVersion;
+    private String brand;
+    private String model;
 
     public ModelInfo(Model model) {
         this.id = model.getId();
-        this.modelName = model.getModelName();
-        this.modelVersion = model.getModelVersion();
+        this.brand = model.getBrand();
+        this.model = model.getModelName();
     }
 
-    public ModelInfo(Long modelId, String modelName, Integer modelVersion) {
+    public ModelInfo(Long modelId, String brand, String model) {
         this.id = modelId;
-        this.modelName = modelName;
-        this.modelVersion = modelVersion;
+        this.brand = brand;
+        this.model = model;
     }
 }

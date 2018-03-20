@@ -30,9 +30,9 @@ public class VehicleController {
 
     @CrossOrigin
     @RequestMapping("/addVehicleModel")
-    public Response addVehicleModel(@RequestParam(value = "modelName") String modelName,
-                                    @RequestParam(value = "modelVersion") Integer modelVersion) {
-        Model newModel = new Model(modelName, modelVersion);
+    public Response addVehicleModel(@RequestParam(value = "brand") String brand,
+                                    @RequestParam(value = "model") String modelName) {
+        Model newModel = new Model(brand, modelName);
         Response response = new Response(RequestStatus.SUCCESS);
         try {
             modelDAO.save(newModel);
