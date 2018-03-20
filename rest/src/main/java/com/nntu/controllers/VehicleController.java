@@ -1,6 +1,8 @@
 package com.nntu.controllers;
 
+import com.nntu.containers.info.ModelInfo;
 import com.nntu.containers.info.VehicleInfo;
+import com.nntu.containers.responses.ModelListResponse;
 import com.nntu.containers.responses.RequestStatus;
 import com.nntu.containers.responses.Response;
 import com.nntu.containers.responses.VehicleListResponse;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
 public class VehicleController {
@@ -79,6 +82,15 @@ public class VehicleController {
                 vehicleDAO.findAllById(id)
                         .stream()
                         .map(VehicleInfo::new)
+                        .collect(Collectors.toList()));
+    }
+
+    @CrossOrigin
+    @RequestMapping("/getAvailableModels")
+    public ModelListResponse getAvailableModels() {
+        return new ModelListResponse(RequestStatus.SUCCESS,
+                StreamSupport.stream(modelDAO.findAll().spliterator(), false)
+                        .map(ModelInfo::new)
                         .collect(Collectors.toList()));
     }
 

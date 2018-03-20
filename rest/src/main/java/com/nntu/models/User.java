@@ -36,7 +36,10 @@ public class User {
     private UserRole role;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    private List<Order> orders;
+    private List<Order> customerOrders;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "landlord")
+    private List<Order> landlordOrders;
 
     public User() {
         // empty constructor
