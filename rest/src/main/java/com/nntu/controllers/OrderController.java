@@ -54,13 +54,27 @@ public class OrderController {
     @CrossOrigin
     @RequestMapping("/getOrdersByCustomerId")
     public OrdersResponse getOrdersByCustomerId(@RequestParam(value = "id") Long id) {
-        return getOrdersById(id);
+        final OrdersResponse response = new OrdersResponse(RequestStatus.SUCCESS);
+        userDAO.findById(id)
+                .ifPresentOrElse(x -> response.getOrderInfoList().addAll(x.getCustomerOrders().stream()
+                                .map(OrderInfo::new)
+                                .collect(Collectors.toList())),
+                        () -> response.setStatus(RequestStatus.FAILURE));
+
+        return response;
     }
 
     @CrossOrigin
     @RequestMapping("/getOrdersByLandlordId")
     public OrdersResponse getOrdersByLandlordId(@RequestParam(value = "id") Long id) {
-        return getOrdersById(id);
+        final OrdersResponse response = new OrdersResponse(RequestStatus.SUCCESS);
+        userDAO.findById(id)
+                .ifPresentOrElse(x -> response.getOrderInfoList().addAll(x.getLandlordOrders().stream()
+                                .map(OrderInfo::new)
+                                .collect(Collectors.toList())),
+                        () -> response.setStatus(RequestStatus.FAILURE));
+
+        return response;
     }
 
     @Autowired
@@ -74,19 +88,7 @@ public class OrderController {
     }
 
     @Autowired
-
     public void setVehicleDAO(VehicleDAO vehicleDAO) {
         this.vehicleDAO = vehicleDAO;
-    }
-
-    private OrdersResponse getOrdersById(Long id) {
-        final OrdersResponse response = new OrdersResponse(RequestStatus.SUCCESS);
-        userDAO.findById(id)
-                .ifPresentOrElse(x -> response.getOrderInfoList().addAll(x.getOrders().stream()
-                                .map(OrderInfo::new)
-                                .collect(Collectors.toList())),
-                        () -> response.setStatus(RequestStatus.FAILURE));
-
-        return response;
     }
 }
