@@ -74,7 +74,7 @@ public class VehicleController {
     }
 
     @CrossOrigin
-    @RequestMapping("/vehicle-by-id")
+    @RequestMapping(value = "/vehicle-by-id", method = RequestMethod.GET)
     public VehicleListResponse getVehicleById(@RequestParam(value = "id") Long id) {
         return new VehicleListResponse(RequestStatus.SUCCESS,
                 vehicleDAO.findAllById(id)
