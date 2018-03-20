@@ -18,19 +18,19 @@ public class Model {
     private Long id;
 
     @NotNull
-    @Column(name = "model_name")
-    private String modelName;
+    @Column(name = "model_brand")
+    private String brand;
 
     @NotNull
-    @Column(name = "model_version")
-    private Integer modelVersion;
+    @Column(name = "model_name")
+    private String modelName;
 
     public Model() {
         // empty constructor
     }
 
-    public Model(@NotNull String modelName, @NotNull Integer modelVersion) {
+    public Model(@NotNull String brand, @NotNull String modelName) {
+        this.brand = brand;
         this.modelName = modelName;
-        this.modelVersion = modelVersion;
     }
 }
