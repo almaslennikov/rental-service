@@ -26,13 +26,17 @@ public class OrderController {
     @CrossOrigin
     @RequestMapping(value = "/order-vehicle", method = RequestMethod.POST)
     public Response orderVehicle(@RequestParam(value = "customerId") Long customerId,
-                                 @RequestParam(value = "vehicleOwnerId") Long vehicleOwnerId,
                                  @RequestParam(value = "vehicleId") Long vehicleId) {
         Optional<User> customer = userDAO.findById(customerId);
-        Optional<User> landlord = userDAO.findById(vehicleOwnerId);
         Optional<Vehicle> vehicle = vehicleDAO.findById(vehicleId);
 
-        if (!customer.isPresent() || !landlord.isPresent() || !vehicle.isPresent()) {
+        if (!customer.isPresent() || !vehicle.isPresent()) {
+            return new Response(RequestStatus.FAILURE);
+        }
+
+        Optional<User> landlord = userDAO.findById(vehicle.get().getLandlord().getId());
+
+        if (!landlord.isPresent()) {
             return new Response(RequestStatus.FAILURE);
         }
 
@@ -90,9 +94,7 @@ public class OrderController {
                                 response.setStatus(RequestStatus.FAILURE);
                             }
                         },
-                        () -> {
-                            response.setStatus(RequestStatus.FAILURE);
-                        });
+                        () -> response.setStatus(RequestStatus.FAILURE));
         return response;
     }
 
