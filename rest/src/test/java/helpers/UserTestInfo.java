@@ -7,11 +7,16 @@ import lombok.Data;
 @Builder
 @Data
 public class UserTestInfo {
+    private Long id;
     private String name;
     private String lastName;
     private String email;
     private UserRole role;
     private String password;
+
+    public String idString() {
+        return "?id=" + id;
+    }
 
     public String authorizationString() {
         return "?email=" + email + '&' +

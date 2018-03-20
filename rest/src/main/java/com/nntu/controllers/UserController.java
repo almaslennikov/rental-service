@@ -25,7 +25,7 @@ public class UserController {
                                    @RequestParam(value = "email") String email,
                                    @RequestParam(value = "password") String password,
                                    @RequestParam(value = "role") UserRole role) {
-        if (authorizeUser(email, password).getStatus().equals(RequestStatus.SUCCESS)) {
+        if (Optional.ofNullable(userDAO.getUserByEmail(email)).isPresent()) {
             return new UserResponse(RequestStatus.FAILURE);
         }
 
@@ -37,11 +37,7 @@ public class UserController {
         UserResponse response = new UserResponse(RequestStatus.SUCCESS);
         try {
             userDAO.save(newUser);
-            response.setUserInfo(new UserInfo(newUser.getId(),
-                    newUser.getName(),
-                    newUser.getLastName(),
-                    newUser.getEmail(),
-                    newUser.getRole()));
+            response.setUserInfo(new UserInfo(newUser));
         } catch (Exception se) {
             response = new UserResponse(RequestStatus.FAILURE);
         }
@@ -58,14 +54,7 @@ public class UserController {
         result.ifPresentOrElse(x -> {
                     if (UUID.fromString(x.getPasswordHash())
                             .equals(UUID.nameUUIDFromBytes(password.getBytes()))) {
-                        response.setUserInfo(UserInfo.builder()
-                                .id(x.getId())
-                                .name(x.getName())
-                                .lastName(x.getLastName())
-                                .email(x.getEmail())
-                                .role(x.getRole())
-                                .build()
-                        );
+                        response.setUserInfo(new UserInfo(x));
                     } else {
                         response.setStatus(RequestStatus.FAILURE);
                     }
@@ -80,13 +69,7 @@ public class UserController {
     public UserResponse getUserById(@RequestParam(value = "id") Long userId) {
         Optional<User> result = userDAO.findById(userId);
         UserResponse response = new UserResponse(RequestStatus.SUCCESS);
-        result.ifPresentOrElse(x -> response.setUserInfo(UserInfo.builder()
-                        .id(x.getId())
-                        .name(x.getName())
-                        .lastName(x.getLastName())
-                        .email(x.getEmail())
-                        .role(x.getRole())
-                        .build()),
+        result.ifPresentOrElse(x -> response.setUserInfo(new UserInfo(x)),
                 () -> response.setStatus(RequestStatus.FAILURE));
 
         return response;
