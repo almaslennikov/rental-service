@@ -1,5 +1,12 @@
 jobs:
   include:
+    - stage: Backend
+      language: java
+      before_install:
+         - cd rest
+      script: 
+         - jdk_switcher use oraclejdk9
+         - mvn clean package install
     - stage: Frontend
       language: node_js
       node_js:
@@ -9,13 +16,6 @@ jobs:
       script:
          - npm install -g --silent @angular/cli
          - ng build --prod
-    - stage: Backend
-      language: java
-      before_install:
-         - cd rest
-      script: 
-         - jdk_switcher use oraclejdk9
-         - mvn clean package install
 stages:
   - Backend
   - Frontend
