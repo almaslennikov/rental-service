@@ -16,6 +16,7 @@ jobs:
       before_install:
          - cd client/rental-service
       script:
+         - npm install
          - npm install -g --silent @angular/cli
          - ng build --prod
 stages:
