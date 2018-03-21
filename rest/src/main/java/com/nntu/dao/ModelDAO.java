@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ModelDAO extends CrudRepository<Model, Long> {
-
+    public Model getModelByBrand(String brand);
 }
