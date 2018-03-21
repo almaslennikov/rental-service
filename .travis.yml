@@ -1,18 +1,30 @@
-language: node_js
+language: java
+jdk: oraclejdk9
+services:
+  - mysql
 
-node_js:
-   - node # will use latest node
-
-before_install:
-   - cd client/rental-service
-
-before_script: # commands to run before the build step
-   - npm install -g --silent @angular/cli
-
-script: # the build step
-   - ng build --prod
-
+jobs:
+  include:
+    - stage: Backend
+      before_install:
+         - cd rest
+         - mysql -e 'CREATE DATABASE rental_schema;'
+      script: 
+         - mvn clean package install
+    - stage: Frontend
+      node_js: node
+      before_install:
+         - cd client/rental-service
+      before_script:
+         - npm install
+         - npm install -g --silent @angular/cli
+      script:
+         - ng build --prod
+stages:
+  - Frontend
+  - Backend
+  
 notifications:
-  email: # only receive email when the build status changes (someone broke the build!)
-    on_failure: change
-    on_success: change
+email: # only receive email when the build status changes (someone broke the build!)
+  on_failure: change
+  on_success: change
