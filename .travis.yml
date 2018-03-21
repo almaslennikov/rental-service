@@ -1,12 +1,16 @@
 jobs:
   include:
     - stage: Frontend
+      language: node_js
+      node_js:
+         - node # will use latest node
       before_install:
          - cd client/rental-service
       script:
          - npm install -g --silent @angular/cli
          - ng build --prod
     - stage: Backend
+      language: java
       before_install:
          - cd rest
       script: 
