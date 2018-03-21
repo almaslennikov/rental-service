@@ -9,6 +9,7 @@ import com.nntu.models.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -21,6 +22,12 @@ public class ModelController {
     @RequestMapping(value = "/new-model", method = RequestMethod.POST)
     public Response addVehicleModel(@RequestParam(value = "brand") String brand,
                                     @RequestParam(value = "model") String modelName) {
+        Optional<Model> findResult = Optional.ofNullable(modelDAO.getModelByBrand(brand));
+        if (findResult.isPresent() &&
+                findResult.get().getModelName().equals(modelName)) {
+            return new Response(RequestStatus.FAILURE);
+        }
+
         Model newModel = new Model(brand, modelName);
         Response response = new Response(RequestStatus.SUCCESS);
         try {
