@@ -1,6 +1,5 @@
 language: java
-jdk: oraclejdk8
-node_js: node
+jdk: oraclejdk9
 
 jobs:
   include:
@@ -10,6 +9,7 @@ jobs:
       script: 
          - mvn clean package install
     - stage: Frontend
+      node_js: node
       before_install:
          - cd client/rental-service
       script:
