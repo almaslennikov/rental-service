@@ -23,3 +23,8 @@ jobs:
 stages:
   - Frontend
   - Backend
+  
+notifications:
+email: # only receive email when the build status changes (someone broke the build!)
+  on_failure: change
+  on_success: change
