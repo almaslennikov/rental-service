@@ -8,7 +8,7 @@ jobs:
          - jdk_switcher use oraclejdk9
          - mvn clean package install
     - stage: Frontend
-      language: node_js
+      
       node_js:
          - node # will use latest node
       before_install:
