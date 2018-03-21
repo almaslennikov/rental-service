@@ -6,7 +6,7 @@ import com.nntu.controllers.UserController;
 import com.nntu.dao.UserDAO;
 import com.nntu.models.User;
 import helpers.UserTestInfo;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = StartUpPoint.class)
+@SpringBootTest(classes = {StartUpPoint.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserControllerTests {
     private MockMvc mvc;
     private UserTestInfo userTestInfo;
@@ -41,7 +41,7 @@ public class UserControllerTests {
     @InjectMocks
     private UserController userController;
 
-    @Before
+    @BeforeClass
     public void setup() {
         mvc = MockMvcBuilders.standaloneSetup(userController).build();
         userTestInfo = UserTestInfo.builder()
