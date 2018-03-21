@@ -16,3 +16,6 @@ jobs:
       script: 
          - jdk_switcher use oraclejdk9
          - mvn clean package install
+stages:
+  - Backend
+  - Frontend
