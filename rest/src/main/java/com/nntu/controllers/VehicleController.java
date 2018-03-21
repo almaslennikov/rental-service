@@ -1,8 +1,6 @@
 package com.nntu.controllers;
 
-import com.nntu.containers.info.ModelInfo;
 import com.nntu.containers.info.VehicleInfo;
-import com.nntu.containers.responses.ModelListResponse;
 import com.nntu.containers.responses.RequestStatus;
 import com.nntu.containers.responses.Response;
 import com.nntu.containers.responses.VehicleListResponse;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/vehicles")
@@ -25,21 +22,6 @@ public class VehicleController {
     private VehicleDAO vehicleDAO;
     private ModelDAO modelDAO;
     private UserDAO userDAO;
-
-    @CrossOrigin
-    @RequestMapping(value = "/new-vehicle-model", method = RequestMethod.POST)
-    public Response addVehicleModel(@RequestParam(value = "brand") String brand,
-                                    @RequestParam(value = "model") String modelName) {
-        Model newModel = new Model(brand, modelName);
-        Response response = new Response(RequestStatus.SUCCESS);
-        try {
-            modelDAO.save(newModel);
-        } catch (Exception se) {
-            response.setStatus(RequestStatus.FAILURE);
-        }
-
-        return response;
-    }
 
     @CrossOrigin
     @RequestMapping(value = "/new-vehicle", method = RequestMethod.POST)
@@ -80,15 +62,6 @@ public class VehicleController {
                 vehicleDAO.findAllById(id)
                         .stream()
                         .map(VehicleInfo::new)
-                        .collect(Collectors.toList()));
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "/available-models", method = RequestMethod.GET)
-    public ModelListResponse getAvailableModels() {
-        return new ModelListResponse(RequestStatus.SUCCESS,
-                StreamSupport.stream(modelDAO.findAll().spliterator(), false)
-                        .map(ModelInfo::new)
                         .collect(Collectors.toList()));
     }
 

@@ -34,6 +34,7 @@ public class UserControllerTests {
     private MockMvc mvc;
     private UserTestInfo userTestInfo;
     private User testRecord;
+
     private String SUCCESS = "SUCCESS";
     private String FAILURE = "FAILURE";
 
