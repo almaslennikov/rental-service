@@ -15,9 +15,10 @@ jobs:
       node_js: node
       before_install:
          - cd client/rental-service
-      script:
+      before_script:
          - npm install
          - npm install -g --silent @angular/cli
+      script:
          - ng build --prod
 stages:
   - Frontend
