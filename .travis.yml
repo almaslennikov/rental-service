@@ -1,18 +1,15 @@
-language: node_js
-
-node_js:
-   - node # will use latest node
-
-before_install:
-   - cd client/rental-service
-
-before_script: # commands to run before the build step
-   - npm install -g --silent @angular/cli
-
-script: # the build step
-   - ng build --prod
-
-notifications:
-  email: # only receive email when the build status changes (someone broke the build!)
-    on_failure: change
-    on_success: change
+jobs:
+  include:
+    - stage: Frontend
+      before_install:
+         - cd client/rental-service
+      before_script:
+         - npm install -g --silent @angular/cli
+      script:
+         - ng build --prod
+    - stage: Backend
+      before_install:
+         - cd rest
+      script: 
+         - jdk_switcher use oraclejdk9
+         - mvn clean package install
