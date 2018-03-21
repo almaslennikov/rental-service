@@ -20,5 +20,5 @@ jobs:
          - npm install -g --silent @angular/cli
          - ng build --prod
 stages:
-  - Backend
   - Frontend
+  - Backend
