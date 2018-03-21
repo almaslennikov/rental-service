@@ -3,7 +3,7 @@ jobs:
     - stage: Backend
       language: java
       jdk:
-        - oraclejdk8
+        - openjdk9
       before_install:
          - cd rest
       script: 
