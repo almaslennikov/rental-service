@@ -16,4 +16,4 @@ ng serve`
 Restful service that provides data to clients
 
 ### Running
-`mvn compile package install spring-boot:run`
+`mvn compile package install && mvn spring-boot:run`
