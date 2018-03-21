@@ -3,9 +3,8 @@ jobs:
     - stage: Frontend
       before_install:
          - cd client/rental-service
-      before_script:
-         - npm install -g --silent @angular/cli
       script:
+         - npm install -g --silent @angular/cli
          - ng build --prod
     - stage: Backend
       before_install:
