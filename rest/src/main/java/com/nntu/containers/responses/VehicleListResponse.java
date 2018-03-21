@@ -11,6 +11,10 @@ import java.util.List;
 public class VehicleListResponse extends Response {
     private List<VehicleInfo> vehicleInfoList;
 
+    public VehicleListResponse(RequestStatus status) {
+        super(status);
+    }
+
     public VehicleListResponse(RequestStatus status, List<VehicleInfo> vehicleInfoList) {
         super(status);
         this.vehicleInfoList = vehicleInfoList;

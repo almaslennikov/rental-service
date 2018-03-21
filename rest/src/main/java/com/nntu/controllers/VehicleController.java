@@ -1,5 +1,6 @@
 package com.nntu.controllers;
 
+import com.nntu.containers.info.UserRole;
 import com.nntu.containers.info.VehicleInfo;
 import com.nntu.containers.responses.RequestStatus;
 import com.nntu.containers.responses.Response;
@@ -63,6 +64,27 @@ public class VehicleController {
                         .stream()
                         .map(VehicleInfo::new)
                         .collect(Collectors.toList()));
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/vehicles-by-landlord-id", method = RequestMethod.GET)
+    public VehicleListResponse getVehiclesByLandlordId(@RequestParam(value = "id") Long id) {
+        Optional<User> landlord = userDAO.findById(id);
+        VehicleListResponse response = new VehicleListResponse(RequestStatus.SUCCESS);
+        landlord.ifPresentOrElse(x -> {
+                    if (x.getRole() == UserRole.LANDLORD) {
+                        response.setVehicleInfoList(
+                                vehicleDAO.findAllByLandlord(x)
+                                        .stream()
+                                        .map(VehicleInfo::new)
+                                        .collect(Collectors.toList())
+                        );
+                    } else {
+                        response.setStatus(RequestStatus.FAILURE);
+                    }
+                },
+                () -> response.setStatus(RequestStatus.FAILURE));
+        return response;
     }
 
     @Autowired
