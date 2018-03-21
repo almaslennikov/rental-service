@@ -8,6 +8,7 @@ jobs:
     - stage: Backend
       before_install:
          - cd rest
+         - mysql -e 'CREATE DATABASE rental_schema;'
       script: 
          - mvn clean package install
     - stage: Frontend
