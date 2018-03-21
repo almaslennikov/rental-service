@@ -1,0 +1,34 @@
+package helpers;
+
+import com.nntu.containers.info.UserRole;
+import lombok.Builder;
+import lombok.Data;
+
+@Builder
+@Data
+public class UserTestInfo {
+    private Long id;
+    private String name;
+    private String lastName;
+    private String email;
+    private UserRole role;
+    private String password;
+
+    public String idString() {
+        return "?id=" + id;
+    }
+
+    public String authorizationString() {
+        return "?email=" + email + '&' +
+                "password=" + password;
+    }
+
+    @Override
+    public String toString() {
+        return "?name='" + name + '&' +
+                "lastName='" + lastName + '&' +
+                "email='" + email + '&' +
+                "role=" + role + '&' +
+                "password='" + password;
+    }
+}
