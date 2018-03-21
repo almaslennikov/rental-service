@@ -1,17 +1,15 @@
+language: java
+jdk: oraclejdk8
+node_js: node
+
 jobs:
   include:
     - stage: Backend
-      language: java
-      jdk:
-        - openjdk9
       before_install:
          - cd rest
       script: 
          - mvn clean package install
     - stage: Frontend
-      language: node_js
-      node_js:
-         - node # will use latest node
       before_install:
          - cd client/rental-service
       script:
