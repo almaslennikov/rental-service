@@ -9,10 +9,10 @@ const passwordPattern = '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,16}$';
 
 @Component({
   selector: 'login-form',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css']
 })
-export class LoginComponent implements OnInit {
+export class AuthComponent implements OnInit {
 
   user = new UserInfo();
   userPassword: string = '';
@@ -41,16 +41,14 @@ export class LoginComponent implements OnInit {
       if (this.validate()) {
         if (this.mode == AuthMode.login) {
           this.authService.handleAuth(this.user.email, this.userPassword).subscribe(isAuthorized => {
-            console.log(isAuthorized);
             if (isAuthorized) {
               this.route.navigate(['']);
             } else {
-              this.errorMessages.push("Invalid login or userPassword");
+              this.errorMessages.push("Invalid login or password");
             }
           });
         } else {
           this.authService.handleRegister(this.user, this.userPassword).subscribe(isRegistered => {
-            console.log(isRegistered);
             if (isRegistered) {
               this.route.navigate(['login']);
             } else {

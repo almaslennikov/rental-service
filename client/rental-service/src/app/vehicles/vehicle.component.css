@@ -1,0 +1,36 @@
+.main-container {
+  position: absolute;
+  top: 3.5em;
+  width: 100%;
+  height: calc(100% - 7.5em);
+  background: white;
+}
+
+.horizontal-box {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.vertical-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.available {
+  margin: 2em;
+  flex-grow: 3;
+}
+
+.models {
+  flex-grow: 1;
+  margin: 2em;
+}
+
+.personal-info {
+  flex-grow: 1;
+}
+
+button {
+  width: 100%;
+}

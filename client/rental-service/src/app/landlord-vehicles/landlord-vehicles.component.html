@@ -1,0 +1,41 @@
+<div class="box">
+  <h2 class="ui header">Your vehicles</h2>
+  <div class="horizontal-box">
+    <table class="ui celled padded table">
+      <thead>
+      <tr>
+        <th class="single line center aligned"><i class="ui icon hashtag disabled"></i></th>
+        <th class="single line center aligned">Brand</th>
+        <th class="single line center aligned">Model</th>
+        <th class="single line center aligned">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let vehicle of vehicleList">
+        <td class="center aligned disabled">
+          {{vehicleList.indexOf(vehicle) + 1}}
+        </td>
+        <td>
+          {{vehicle.brand}}
+        </td>
+        <td>
+          {{vehicle.model}}
+        </td>
+        <td>
+          {{vehicle.status}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div *ngIf="modelList" class="ui segment">
+      <select class="ui fluid dropdown" [(ngModel)]="vehicleToAdd">
+        <option *ngFor="let model of modelList" value="{{model.id}}">{{model.brand + ' ' + model.model}}</option>
+      </select>
+      <button class="ui primary positive button" type="submit" (click)="onAddVehicle.emit(vehicleToAdd)">
+        Add vehicle
+      </button>
+    </div>
+  </div>
+
+
+</div>

@@ -1,14 +1,7 @@
 .personal-info-view {
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: row;
   margin: 2em;
-}
-
-.personal-info-container {
-  flex-grow: 1;
-  display: flex;
   justify-content: center;
 }
 
@@ -18,14 +11,4 @@
 
 button {
   width: 100%;
-}
-
-.rented-vehicles-container {
-  flex-grow: 10;
-  display: flex;
-  justify-content: center;
-}
-
-.table {
-  max-width: 90%;
 }
