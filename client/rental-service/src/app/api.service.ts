@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {UserInfo} from "./user-info";
 
 @Injectable()
@@ -17,16 +17,46 @@ export class ApiService {
     httpParams = httpParams.append('role', user.role.toUpperCase());
     httpParams = httpParams.append('password', password);
 
-    return this.http.get('http://localhost:8080/addNewUser', {params: httpParams});
+    return this.http.post('http://localhost:8080/users/new-user', httpParams);
   }
 
   login(email: string, password: string) {
     let httpParams = new HttpParams();
 
-    httpParams = httpParams.append('email', email);
-    httpParams = httpParams.append('password', password);
+    httpParams = httpParams.set('email', email);
+    httpParams = httpParams.set('password', password);
 
-    return this.http.get('http://localhost:8080/authorizeUser', {params: httpParams});
+    return this.http.get('http://localhost:8080/users/authorize-user', {params: httpParams});
+  }
+
+  getVehicleModels() {
+    return this.http.get('http://localhost:8080/models/available-models');
+  }
+
+  addVehicleModel(brand: string, model: string) {
+    let httpParams = new HttpParams();
+
+    httpParams = httpParams.set('brand', brand);
+    httpParams = httpParams.set('model', model);
+
+    return this.http.post('http://localhost:8080/models/new-model', httpParams);
+  }
+
+  addVehicle(ownerId: number, modelId: number) {
+    let httpParams = new HttpParams();
+
+    httpParams = httpParams.set('ownerId', ownerId.toString());
+    httpParams = httpParams.set('modelId', modelId.toString());
+
+    return this.http.post('http://localhost:8080/vehicles/new-vehicle', httpParams);
+  }
+
+  getOwnerVehicles(ownerId: number) {
+    let httpParams = new HttpParams();
+
+    httpParams = httpParams.set('id', ownerId.toString());
+
+    return this.http.get('http://localhost:8080/vehicles/vehicles-by-landlord-id', {params: httpParams});
   }
 
 }

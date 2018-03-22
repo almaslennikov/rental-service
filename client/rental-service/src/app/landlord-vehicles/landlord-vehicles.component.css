@@ -1,0 +1,23 @@
+button, select {
+  width: 100%;
+}
+
+button.ui {
+  margin-top: 1em;
+}
+
+select.ui {
+  border-radius: 4px;
+}
+
+.horizontal-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.ui.segment {
+  height: 8.5em;
+  margin-top: 0;
+  margin-left: 5em;
+  width: 30em;
+}

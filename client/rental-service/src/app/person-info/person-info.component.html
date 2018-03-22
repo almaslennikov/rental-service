@@ -1,57 +1,22 @@
 <div class="personal-info-view">
-  <div class="personal-info-container">
-    <div class="ui card">
-      <div class="image">
-        <img src={{avatarUrl}}>
+  <div class="ui card">
+    <div class="image">
+      <img src={{avatarUrl}}>
+    </div>
+    <div class="content">
+      <a class="header">{{user.name + ' ' + user.lastName}}</a>
+      <div class="meta">
+        <span class="email">{{user.email}}</span>
       </div>
-      <div class="content">
-        <a class="header">{{user.name + ' ' + user.lastName}}</a>
-        <div class="meta">
-          <span class="email">{{user.email}}</span>
-        </div>
-        <div class="description">
-          {{user.role | titlecase}}
-        </div>
-      </div>
-      <div class="extra content">
-        <a>
-          <i class="truck icon"></i>
-          22 Vehicles in rent
-        </a>
-      </div>
-      <div class="extra content">
-        <button class="ui positive button">Lend a vehicle</button>
+      <div class="description">
+        {{user.role | titlecase}}
       </div>
     </div>
-  </div>
-  <div class="rented-vehicles-container">
-    <table class="ui celled table">
-      <thead>
-      <tr>
-        <th>Vehicle type</th>
-        <th>Tenant</th>
-        <th>Date</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>
-          Truck
-        </td>
-        <td>Mark</td>
-        <td>18.03.2018</td>
-      </tr>
-      <tr>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-      </tr>
-      <tr>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="extra content">
+      <a>
+        <i class="truck icon"></i>
+        {{vehiclesInRent}} Vehicles in rent
+      </a>
+    </div>
   </div>
 </div>

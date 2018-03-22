@@ -1,0 +1,57 @@
+<div class="horizontal-box main-container">
+  <div class="personal-info horizontal-box">
+      <person-info [user]="user" [vehiclesInRent]="vehiclesInRent.length"></person-info>
+  </div>
+  <div class="available">
+    <div class="horizontal-box">
+      <landlord-vehicles *ngIf="user.role == (UserRole.landlord | uppercase)" [vehicleList]="vehiclesInRent" [modelList]="models" (onAddVehicle)="onAddVehicle($event)"></landlord-vehicles>
+      <customer-vehicles *ngIf="user.role == (UserRole.customer | uppercase)"></customer-vehicles>
+    </div>
+  </div>
+  <div class="models">
+    <div class="horizontal-box">
+      <div>
+        <h2 class="ui header">All models</h2>
+        <table class="ui celled padded table">
+          <thead>
+          <tr>
+            <th class="single line center aligned">Brand</th>
+            <th class="single line center aligned">Model</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let model of models">
+            <td>
+              {{model.brand}}
+            </td>
+            <td>
+              {{model.model}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="ui transparent input">
+                <input type="text" placeholder="Add brand..." [(ngModel)]="brandToAdd">
+              </div>
+            </td>
+            <td>
+              <div class="ui transparent input">
+                <input type="text" placeholder="Add model..." [(ngModel)]="modelToAdd">
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <button class="ui primary positive button" type="submit" (click)="addModel()" [disabled]="brandToAdd == '' || modelToAdd == ''">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

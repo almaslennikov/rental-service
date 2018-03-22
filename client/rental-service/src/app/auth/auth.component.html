@@ -22,7 +22,7 @@
                  placeholder="username@example.com">
         </div>
         <div *ngIf="mode == AuthMode.register" class="field">
-          <label>UserRole</label>
+          <label>Role</label>
           <select class="ui dropdown" [(ngModel)]="user.role">
             <option value="">Select role</option>
             <option value="landlord">Landlord</option>

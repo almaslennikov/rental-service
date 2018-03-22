@@ -5,14 +5,14 @@
   <a class="item" *ngIf="this.authService.isAuthorized" href="info">
     Personal Info
   </a>
-  <a class="item" *ngIf="this.authService.isAuthorized" href="rent">
-    In rent
+  <a class="item" *ngIf="this.authService.isAuthorized" href="vehicles">
+    Models
   </a>
   <a class="item" *ngIf="this.authService.isAuthorized" href="history">
     Requests history
   </a>
   <div class="right menu">
-    <a class="item" *ngIf="!this.authService.isAuthorized" href="login">
+    <a class="item" *ngIf="!this.authService.isAuthorized" href="auth">
       <i class="sign in alternate icon"></i> Login
     </a>
     <a class="item" *ngIf="this.authService.isAuthorized" href="logout">

@@ -1,10 +1,10 @@
 import {UserRole} from "./user-role";
 
 export class UserInfo {
-  email: string;
-  id: number;
-  name: string;
-  lastName: string;
+  email: string = '';
+  id: number = 0;
+  name: string = '';
+  lastName: string = '';
   role = UserRole.customer;
 
   public set(id: number, name: string, lastName: string, email: string, role: UserRole) {
