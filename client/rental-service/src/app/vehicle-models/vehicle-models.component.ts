@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Model} from "../model";
+import {Model} from "../structures/model";
 
 @Component({
   selector: 'vehicle-models',
   templateUrl: './vehicle-models.component.html'
 })
-export  class VehicleModelsComponent {
+export class VehicleModelsComponent {
 
   @Input() models: Model[] = [];
 

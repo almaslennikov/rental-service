@@ -9,21 +9,21 @@
     </thead>
     <tbody>
     <tr *ngFor="let model of models">
-      <td>
+      <td class="brand">
         {{model.brand}}
       </td>
-      <td>
+      <td class="model">
         {{model.model}}
       </td>
     </tr>
     <tr>
       <td>
-        <div class="ui transparent input">
+        <div class="ui transparent input brand">
           <input type="text" placeholder="Add brand..." [(ngModel)]="model.brand">
         </div>
       </td>
       <td>
-        <div class="ui transparent input">
+        <div class="ui transparent input model">
           <input type="text" placeholder="Add model..." [(ngModel)]="model.model">
         </div>
       </td>

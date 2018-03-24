@@ -3,7 +3,7 @@ import {Observable} from "rxjs/Rx";
 import {ApiService} from "./api.service";
 import {map} from "rxjs/operators";
 import {UserService} from "./user.service";
-import {UserInfo} from "./user-info";
+import {UserInfo} from "../structures/user-info";
 
 @Injectable()
 export class AuthService {

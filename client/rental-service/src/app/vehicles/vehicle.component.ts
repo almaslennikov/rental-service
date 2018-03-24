@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiService} from "../api.service";
-import {UserInfo} from "../user-info";
-import {UserService} from "../user.service";
-import {Model} from "../model";
-import {UserRole} from "../user-role";
-import {RentInfo} from "../rent-info";
+import {ApiService} from "../shared/api.service";
+import {UserInfo} from "../structures/user-info";
+import {UserService} from "../shared/user.service";
+import {Model} from "../structures/model";
+import {UserRole} from "../structures/user-role";
+import {RentInfo} from "../structures/rent-info";
 
 @Component({
   selector: 'userVehicles',

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {UserInfo} from "./user-info";
+import {UserInfo} from "../structures/user-info";
 
 @Injectable()
 export class ApiService {

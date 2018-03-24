@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {RentInfo} from "../rent-info";
+import {RentInfo} from "../structures/rent-info";
 
 @Component({
   selector: 'vehicles-for-rent',
