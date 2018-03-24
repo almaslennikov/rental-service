@@ -29,7 +29,7 @@ jobs:
         - npm install
         - npm install -g --silent @angular/cli
       script:
-        - npm test --single-run --browsers PhantomJS
+        - ng test --watch false --single-run --browsers PhantomJS
 stages:
   - Frontend
   - Backend
