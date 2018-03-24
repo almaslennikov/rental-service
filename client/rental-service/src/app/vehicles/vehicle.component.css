@@ -19,15 +19,16 @@
 }
 
 .available {
-  margin: 2em;
-  flex-grow: 3;
+  margin: 2em 0;
+  flex: 4 0 20%;
 }
 
 .models {
-  flex-grow: 1;
-  margin: 2em;
+  margin: 2em 0;
+  flex: 3 0 20%;
 }
 
 .personal-info {
-  flex-grow: 1;
+  margin: 2em 0;
+  flex: 1 0 20%;
 }

@@ -1,12 +1,7 @@
 .personal-info-view {
   height: 100%;
   width: 100%;
-  margin: 2em;
   justify-content: center;
-}
-
-.card {
-  max-height: 60%;
 }
 
 button {
