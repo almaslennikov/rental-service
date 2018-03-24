@@ -1,0 +1,40 @@
+<div>
+  <h2 class="ui header">All models</h2>
+  <table class="ui celled padded table">
+    <thead>
+    <tr>
+      <th class="single line center aligned">Brand</th>
+      <th class="single line center aligned">Model</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let model of models">
+      <td>
+        {{model.brand}}
+      </td>
+      <td>
+        {{model.model}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="ui transparent input">
+          <input type="text" placeholder="Add brand..." [(ngModel)]="model.brand">
+        </div>
+      </td>
+      <td>
+        <div class="ui transparent input">
+          <input type="text" placeholder="Add model..." [(ngModel)]="model.model">
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button class="ui primary positive button"
+          type="submit"
+          style="width: 100%"
+          (click)="onAddModel()"
+          [disabled]="model.brand == '' || model.model == ''">
+    Add
+  </button>
+</div>

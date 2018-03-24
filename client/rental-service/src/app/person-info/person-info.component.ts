@@ -12,7 +12,7 @@ import {AvatarService} from "../avatar.service";
 export class PersonInfoComponent implements OnInit {
 
   @Input() user: UserInfo;
-  @Input() vehiclesInRent;
+  @Input() message;
   avatarUrl = '';
 
   constructor(private avatarService: AvatarService) {

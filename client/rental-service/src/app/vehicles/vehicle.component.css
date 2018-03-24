@@ -1,9 +1,10 @@
 .main-container {
-  position: absolute;
-  top: 3.5em;
+  position: relative;
   width: 100%;
-  height: calc(100% - 7.5em);
+  height: 100%;
   background: white;
+  margin: 0;
+  overflow-y: auto;
 }
 
 .horizontal-box {
@@ -18,19 +19,16 @@
 }
 
 .available {
-  margin: 2em;
-  flex-grow: 3;
+  margin: 2em 0;
+  flex: 4 0 20%;
 }
 
 .models {
-  flex-grow: 1;
-  margin: 2em;
+  margin: 2em 0;
+  flex: 3 0 20%;
 }
 
 .personal-info {
-  flex-grow: 1;
-}
-
-button {
-  width: 100%;
+  margin: 2em 0;
+  flex: 1 0 20%;
 }
