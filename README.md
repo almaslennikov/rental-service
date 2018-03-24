@@ -7,6 +7,14 @@ This is the course work on Data Management which consists of two major component
 
 Web application that provides you user-friendly interface for reading and editing data stored in database
 
+### Landlord view
+
+![Landlord view](/client/rental-service/src/assets/landlord-view.png)
+
+### Customer view
+
+![Customer view](/client/rental-service/src/assets/customer-view.png)
+
 ### Running
 `npm install &&
 ng serve`
