@@ -19,7 +19,7 @@ jobs:
          - npm install
          - npm install -g --silent @angular/cli
       script:
-         - ng build --prod
+         - npm test
 stages:
   - Frontend
   - Backend

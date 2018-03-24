@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {UserInfo} from "./user-info";
-import {UserRole} from "./user-role";
+import {UserInfo} from "../structures/user-info";
+import {UserRole} from "../structures/user-role";
 
 @Injectable()
 export class UserService {

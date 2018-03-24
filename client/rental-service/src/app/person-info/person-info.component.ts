@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AuthService} from '../auth.service';
-import {UserInfo} from "../user-info";
-import {UserService} from "../user.service";
-import {AvatarService} from "../avatar.service";
+import {AuthService} from '../shared/auth.service';
+import {UserInfo} from "../structures/user-info";
+import {UserService} from "../shared/user.service";
+import {AvatarService} from "../shared/avatar.service";
 
 @Component({
   selector: 'person-info',

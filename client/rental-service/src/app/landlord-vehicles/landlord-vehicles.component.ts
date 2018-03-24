@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Model} from "../model";
+import {Model} from "../structures/model";
 
 @Component({
   selector: 'landlord-vehicles',
