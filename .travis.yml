@@ -3,6 +3,9 @@ jdk: oraclejdk9
 services:
   - mysql
 
+sudo: required
+dist: trusty
+
 jobs:
   include:
     - stage: Backend
@@ -14,12 +17,19 @@ jobs:
     - stage: Frontend
       node_js: node
       before_install:
-         - cd client/rental-service
+        - cd client/rental-service
+        - export CHROME_BIN=/usr/bin/google-chrome
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
+        - sudo apt-get update
+        - sudo apt-get install -y libappindicator1 fonts-liberation
+        - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        - sudo dpkg -i google-chrome*.deb
       before_script:
-         - npm install
-         - npm install -g --silent @angular/cli
+        - npm install
+        - npm install -g --silent @angular/cli
       script:
-         - npm test --single-run --browsers PhantomJS
+        - npm test --single-run --browsers PhantomJS
 stages:
   - Frontend
   - Backend
