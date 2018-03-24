@@ -6,12 +6,10 @@ import {LogoutComponent} from "./logout/logout.component";
 import {VehicleComponent} from "./vehicles/vehicle.component";
 
 const routes: Routes = [
-  {path: 'info', component: PersonInfoComponent},
   {path: 'login', component: AuthComponent},
   {path: 'register', component: AuthComponent},
   {path: 'logout', component: LogoutComponent},
-  {path: 'vehicles', component: VehicleComponent},
-  {path: '', redirectTo: 'vehicles', pathMatch: 'full'}
+  {path: '', component: VehicleComponent}
 ];
 
 @NgModule({

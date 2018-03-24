@@ -15,6 +15,8 @@ import {AvatarService} from "./avatar.service";
 import { VehicleComponent } from './vehicles/vehicle.component';
 import { LandlordVehiclesComponent } from './landlord-vehicles/landlord-vehicles.component';
 import { CustomerVehiclesComponent } from './customer-vehicles/customer-vehicles.component';
+import { VehicleModelsComponent } from './vehicle-models/vehicle-models.component';
+import { VehiclesForRentComponent } from './vehicles-for-rent/vehicles-for-rent.component';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { CustomerVehiclesComponent } from './customer-vehicles/customer-vehicles
     VehicleComponent,
     LandlordVehiclesComponent,
     CustomerVehiclesComponent,
+    VehicleModelsComponent,
+    VehiclesForRentComponent,
   ],
   imports: [
     BrowserModule,

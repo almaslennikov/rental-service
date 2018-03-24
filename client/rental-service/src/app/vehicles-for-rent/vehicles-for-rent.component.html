@@ -1,19 +1,19 @@
 <div class="box">
-  <h2 class="ui header">Your rented vehicles</h2>
+  <h2 class="ui header">Available for rent</h2>
   <div class="horizontal-box">
-    <table *ngIf="rentedVehicles.length" class="ui celled padded table">
+    <table *ngIf="rentList.length" class="ui celled padded table">
       <thead>
       <tr>
         <th class="single line center aligned"><i class="ui icon hashtag disabled"></i></th>
         <th class="single line center aligned">Vehicle</th>
-        <th class="single line center aligned">Rented from</th>
+        <th class="single line center aligned">Landlord</th>
         <th class="single line center aligned">Action</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of rentedVehicles">
+      <tr *ngFor="let item of rentList">
         <td class="center aligned disabled">
-          {{rentedVehicles.indexOf(item) + 1}}
+          {{rentList.indexOf(item) + 1}}
         </td>
         <td>
           {{item.model.brand + ' ' + item.model.model}}
@@ -22,18 +22,18 @@
           {{item.landlord.name + ' ' + item.landlord.lastName}}
         </td>
         <td>
-          <button class="ui primary negative button" type="submit" (click)="onCancelRent.emit(item)">
-            Cancel
+          <button class="ui primary positive button" type="submit" (click)="onRentVehicle.emit(item)">
+            Rent
           </button>
         </td>
       </tr>
       </tbody>
     </table>
-    <div *ngIf="!rentedVehicles.length" class="ui message">
+    <div *ngIf="!rentList.length" class="ui message">
       <div class="header">
-        You have no rented vehicles
+        There are no available vehicles
       </div>
-      <p>You can rent a vehicle from the list on the left</p>
+      <p>Vehicles will be present when landlord will add them</p>
     </div>
   </div>
 </div>

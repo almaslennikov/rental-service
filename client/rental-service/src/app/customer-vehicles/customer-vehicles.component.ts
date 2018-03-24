@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {RentInfo} from "../rent-info";
 
 @Component({
   selector: 'customer-vehicles',
-  templateUrl: './customer-vehicles.component.html',
-  styleUrls: ['./customer-vehicles.component.css']
+  templateUrl: './customer-vehicles.component.html'
 })
-export class CustomerVehiclesComponent implements OnInit {
+export class CustomerVehiclesComponent {
 
-  constructor() { }
+  @Input() rentedVehicles: RentInfo[] = [];
+  @Output() onCancelRent = new EventEmitter<RentInfo>();
 
-  ngOnInit() {
+  constructor() {
   }
-
 }

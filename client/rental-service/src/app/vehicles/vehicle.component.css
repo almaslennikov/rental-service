@@ -1,9 +1,10 @@
 .main-container {
-  position: absolute;
-  top: 3.5em;
+  position: relative;
   width: 100%;
-  height: calc(100% - 7.5em);
+  height: 100%;
   background: white;
+  margin: 0;
+  overflow-y: auto;
 }
 
 .horizontal-box {
@@ -29,8 +30,4 @@
 
 .personal-info {
   flex-grow: 1;
-}
-
-button {
-  width: 100%;
 }

@@ -2,20 +2,14 @@
   <div class="header item">
     <i class="shopping basket icon large"></i> Rental Service
   </div>
-  <a class="item" *ngIf="this.authService.isAuthorized" href="info">
-    Personal Info
-  </a>
-  <a class="item" *ngIf="this.authService.isAuthorized" href="vehicles">
-    Models
-  </a>
-  <a class="item" *ngIf="this.authService.isAuthorized" href="history">
-    Requests history
-  </a>
   <div class="right menu">
-    <a class="item" *ngIf="!this.authService.isAuthorized" href="auth">
+    <a class="item" *ngIf="!this.authService.isAuthorized()" href="login">
       <i class="sign in alternate icon"></i> Login
     </a>
-    <a class="item" *ngIf="this.authService.isAuthorized" href="logout">
+    <a class="item" *ngIf="!this.authService.isAuthorized()" href="register">
+      Register
+    </a>
+    <a class="item" *ngIf="this.authService.isAuthorized()" href="logout">
       <i class="sign out alternate icon"></i> Logout
     </a>
   </div>

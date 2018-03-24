@@ -28,6 +28,7 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     this.authService.logout();
+    console.log(this.authService.isAuthorized());
     if (this.route.routerState.snapshot.url.includes('login')) {
       this.mode = AuthMode.login;
     } else {
@@ -95,6 +96,7 @@ export class AuthComponent implements OnInit {
     }
     if (!this.userPassword.match(passwordPattern) && this.userPassword) {
       this.errorMessages.push('Password must contain at least 1 letter and 1 digit');
+      this.errorMessages.push('Password should contain only letters and digits');
       validationResult = false;
     }
 
